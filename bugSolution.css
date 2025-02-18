@@ -1,0 +1,46 @@
+To solve the inconsistent width calculation, consider these approaches:
+
+**Approach 1: Using a container with defined width**
+
+```css
+.container {
+  width: 500px; /* Or any fixed width */
+}
+
+.inner {
+  width: calc(50% - 10px);
+}
+```
+
+Here, we provide a fixed width to the container.  This ensures the `50%` calculation is applied after determining the container's width.
+
+**Approach 2: Using flexible box model (Flexbox)**
+
+```css
+.container {
+  display: flex;
+  width: 500px; /* Or any suitable width */
+}
+
+.inner {
+  flex: 1;
+  margin-right: 10px; /* Adjust margin instead of subtracting from width */
+}
+```
+
+Flexbox allows for more flexible layout management.  The `flex: 1;` makes the element take up available space, and adjusting the margin achieves the desired reduction.
+
+**Approach 3: Using grid layout**
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: calc(50% - 10px) auto;
+  width: 500px; /* Or any suitable width */
+}
+
+.inner {
+  /* Add styling as needed */
+}
+```
+Grid provides a powerful system for layout. This example places the `inner` element in the first column, which is sized with `calc()`.  The use of grid reduces reliance on width percentage alone.
